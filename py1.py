@@ -326,9 +326,9 @@ def game():
         
         text_rect = text.get_rect(center=(WIDTH // 10, HEIGHT // 10))
         screen.blit(maze,(maze_x,maze_y))
-        screen.blit(player, (player_pos.x,player_pos.y))
         for random_x, random_y in zip(random_xs, random_ys):
             screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
+        screen.blit(player, (player_pos.x,player_pos.y))
         screen.blit(text, text_rect)
 
         pygame.display.flip()
@@ -348,10 +348,9 @@ def game():
                 maze_y-=movement
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
-            screen.blit(player, (player_pos.x,player_pos.y))
             for random_x, random_y in zip(random_xs, random_ys):
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
-                print(maze_x, maze_y, random_x, random_y)
+            screen.blit(player, (player_pos.x,player_pos.y))
          
         if keys[pygame.K_s]:
             screen.blit(whites,(0,0))
@@ -364,9 +363,9 @@ def game():
                 maze_y+=movement
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
-            screen.blit(player, (player_pos.x,player_pos.y))
             for random_x, random_y in zip(random_xs, random_ys):
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
+            screen.blit(player, (player_pos.x,player_pos.y))
            
         if keys[pygame.K_a]:
             screen.blit(whites,(0,0))
@@ -379,9 +378,9 @@ def game():
                 maze_x-=movement
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
-            screen.blit(player, (player_pos.x,player_pos.y))
             for random_x, random_y in zip(random_xs, random_ys):
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
+            screen.blit(player, (player_pos.x,player_pos.y))
 
         if keys[pygame.K_d]:
             screen.blit(whites,(0,0))
@@ -394,9 +393,9 @@ def game():
                 maze_x+=movement
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
-            screen.blit(player, (player_pos.x,player_pos.y))
             for random_x, random_y in zip(random_xs, random_ys):
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
+            screen.blit(player, (player_pos.x,player_pos.y))
 
         for random_x, random_y in zip(random_xs, random_ys):
             if random_x+maze_x==245 and random_y+maze_y==245:
