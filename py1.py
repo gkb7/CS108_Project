@@ -400,7 +400,7 @@ def game():
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
 
         for random_x, random_y in zip(random_xs, random_ys):
-            if random_x-maze_x==105 and random_y-maze_y==1205:
+            if random_x+maze_x==245 and random_y+maze_y==245:
                 random_xs.remove(random_x)
                 random_ys.remove(random_y)
                 random_number = random.randint(1, 6)
