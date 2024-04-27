@@ -44,8 +44,8 @@ img_width=50
 img_height=50
 player = pygame.transform.scale(bigplayer,(img_width,img_height))
 player_pos = pygame.Vector2(245, 245)
-random_xs = [random.randint(0, 14)*50+25 for _ in range(3)]
-random_ys = [random.randint(0, 14)*50+25 for _ in range(3)]
+random_xs = [random.randint(0, 20)*100+25 for _ in range(3)]
+random_ys = [random.randint(0, 20)*100+25 for _ in range(3)]
 red_die1=pygame.image.load('red_die.jpg').convert()
 red_die2=pygame.transform.scale(red_die1,(img_width,img_height))
 pygame.display.flip()
@@ -352,6 +352,7 @@ def game():
             screen.blit(player, (player_pos.x,player_pos.y))
             for random_x, random_y in zip(random_xs, random_ys):
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
+                print(maze_x, maze_y, random_x, random_y)
          
         if keys[pygame.K_s]:
             screen.blit(whites,(0,0))
@@ -399,7 +400,9 @@ def game():
                 screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
 
         for random_x, random_y in zip(random_xs, random_ys):
-            if maze_x+random_x==-5 and maze_y+random_y==5:
+            if random_x-maze_x==105 and random_y-maze_y==1205:
+                random_xs.remove(random_x)
+                random_ys.remove(random_y)
                 random_number = random.randint(1, 6)
                 COUNTDOWN_SECONDS = 100-random_number*2
                 countdown_timer = COUNTDOWN_SECONDS * 1000
