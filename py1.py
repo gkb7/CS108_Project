@@ -307,8 +307,7 @@ def game():
     screen.blit(player, (player_pos.x,player_pos.y))
 
     while page2:
-        global retry_g
-        global wc
+        global retry_g, COUNTDOWN_SECONDS, countdown_timer, wc
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
