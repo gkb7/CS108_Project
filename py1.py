@@ -44,9 +44,10 @@ img_width=50
 img_height=50
 player = pygame.transform.scale(bigplayer,(img_width,img_height))
 player_pos = pygame.Vector2(245, 245)
-random_x = random.randint(-168, -28)*10
-random_y = random.randint(-168, -28)*10
-print(random_x,random_y)
+random_xs = [random.randint(0, 14)*50+25 for _ in range(3)]
+random_ys = [random.randint(0, 14)*50+25 for _ in range(3)]
+red_die1=pygame.image.load('red_die.jpg').convert()
+red_die2=pygame.transform.scale(red_die1,(img_width,img_height))
 pygame.display.flip()
 # setup maze variables
 x = 0                    # x axis
@@ -279,7 +280,7 @@ def get_color(x, y):
 def red_die():
     red_die1=pygame.image.load('red_die.jpg').convert()
     red_die2=pygame.transform.scale(red_die1,(img_width,img_height))
-    maze.blit(red_die1,(random_x, random_y))
+    screen.blit(red_die1,(maze_x+random_x, maze_y+random_y))
 
 
 def mazef(surface):
@@ -301,7 +302,6 @@ def game():
     maze_y=20 - 20*50
 
     mazef(maze)
-    red_die()
 
     page2 = True
     screen.blit(player, (player_pos.x,player_pos.y))
@@ -328,6 +328,8 @@ def game():
         text_rect = text.get_rect(center=(WIDTH // 10, HEIGHT // 10))
         screen.blit(maze,(maze_x,maze_y))
         screen.blit(player, (player_pos.x,player_pos.y))
+        for random_x, random_y in zip(random_xs, random_ys):
+            screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
         screen.blit(text, text_rect)
 
         pygame.display.flip()
@@ -348,8 +350,8 @@ def game():
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
             screen.blit(player, (player_pos.x,player_pos.y))
-            red_die()
-            print(maze_x,maze_y)
+            for random_x, random_y in zip(random_xs, random_ys):
+                screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
          
         if keys[pygame.K_s]:
             screen.blit(whites,(0,0))
@@ -363,8 +365,8 @@ def game():
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
             screen.blit(player, (player_pos.x,player_pos.y))
-            red_die()
-            print(maze_x,maze_y)
+            for random_x, random_y in zip(random_xs, random_ys):
+                screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
            
         if keys[pygame.K_a]:
             screen.blit(whites,(0,0))
@@ -378,8 +380,8 @@ def game():
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
             screen.blit(player, (player_pos.x,player_pos.y))
-            red_die()
-            print(maze_x,maze_y)
+            for random_x, random_y in zip(random_xs, random_ys):
+                screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
 
         if keys[pygame.K_d]:
             screen.blit(whites,(0,0))
@@ -393,13 +395,14 @@ def game():
                 screen.blit(whites,(0,0))
                 screen.blit(maze,(maze_x,maze_y) )
             screen.blit(player, (player_pos.x,player_pos.y))
-            red_die()
-            print(maze_x,maze_y)
+            for random_x, random_y in zip(random_xs, random_ys):
+                screen.blit(red_die2,(maze_x+random_x, maze_y+random_y))
 
-        if maze_x==random_x and maze_y==random_y:
-            random_number = random.randint(1, 6)
-            COUNTDOWN_SECONDS = 100-random_number*2
-            countdown_timer = COUNTDOWN_SECONDS * 1000
+        for random_x, random_y in zip(random_xs, random_ys):
+            if maze_x+random_x==-5 and maze_y+random_y==5:
+                random_number = random.randint(1, 6)
+                COUNTDOWN_SECONDS = 100-random_number*2
+                countdown_timer = COUNTDOWN_SECONDS * 1000
             
 
         # print(maze_x,maze_y)
